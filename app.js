@@ -15,7 +15,7 @@ function loadEventListeners() {
 }
 
 // Add task
-function addTask() {
+function addTask(e) {
   if(taskInput.value === '') {
     alert('Add a task');
   }
@@ -26,9 +26,20 @@ function addTask() {
   li.className = 'collection-item';
   // Create text node and append to li
   li.appendChild(document.createTextNode(taskInput.value));
-  // Create new link element
+  // Create new link element for the delete icon
   const link = document.createElement('a');
-  a.className = 'delete-item secondary-content';
+  // Add class - needs to have secondary-content in order to align it to the right with Materialize
+  link.className = 'delete-item secondary-content';
+  // Add icon html
+  link.innerHTML = '<i class="fa fa-remove"></i>';
+  // Append the link to li
+  li.appendChild(link);
+
+  // Append li to ul
+  taskList.appendChild(li);
+
+  // Clear input
+  taskInput.value = '';
 
 
   e.preventDefault();
